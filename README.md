@@ -11,5 +11,5 @@ To use:
 * Install python 3.5.
 * pip install -r requirements.txt
 * Put your bot's username and password into config.json (see config.json.example)
-* Run gatherbot.py. It will connect to all the channels in all the servers you
+* Run main.py. It will connect to all the channels in all the servers you
   put them in when you set up the username.
