@@ -7,11 +7,9 @@ logger = logging.getLogger(__name__)
 
 
 class Bot:
-    def __init__(self, username, password):
+    def __init__(self):
         self.client = discord.Client()
         self.actions = {}
-        self.username = username
-        self.password = password
 
         @self.client.event
         async def on_ready():
@@ -34,7 +32,9 @@ class Bot:
                             await self.say(message.channel, 'Something went wrong with that command.')
                         break
 
-    def run(self):
+    def run(self, username, password):
+        self.username = username
+        self.password = password
         self.client.run(self.username, self.password)
 
     def action(self, regex):
