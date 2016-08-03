@@ -1,6 +1,7 @@
 .venv
 __pycache__
 *.pyc
+.coverage
 
 # swap
 [._]*.s[a-w][a-z]
