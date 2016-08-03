@@ -37,14 +37,15 @@ class Bot:
         self.password = password
         self.client.run(self.username, self.password)
 
-    def action(self, regex):
-        def decorator(f):
-            logger.info('Registering action {0}'.format(regex))
-            if regex in self.actions:
-                logger.info('Overwriting regex {0}'.format(regex))
-            self.actions[regex] = (re.compile(regex, re.IGNORECASE), f)
-            return f
-        return decorator
+    def action(self, regex, coro):
+        logger.info('Registering action {0}'.format(regex))
+        if regex in self.actions:
+            logger.info('Overwriting regex {0}'.format(regex))
+        self.actions[regex] = (re.compile(regex, re.IGNORECASE), coro)
 
     async def say(self, channel, message):
         await self.client.send_message(channel, message)
+
+    async def say_lines(self, channel, messages):
+        for line in messages:
+            await self.say(channel, line)

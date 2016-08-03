@@ -1,6 +1,7 @@
 import logging
 import json
-from gather import bot
+from gather.gatherbot import GatherBot
+from gather import views
 
 
 if __name__ == '__main__':
@@ -11,5 +12,10 @@ if __name__ == '__main__':
 
     with open('config.json') as f:
         config = json.load(f)
+
+    bot = GatherBot()
+    bot.action('^!help', views.bot_help)
+    bot.action('^!(?:add|s)', views.add)
+    bot.action('^!(?:remove|so)', views.remove)
 
     bot.run(config['username'], config['password'])

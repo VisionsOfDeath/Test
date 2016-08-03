@@ -1,16 +1,20 @@
 import random
-from gather import bot
 
 
-@bot.action('^!help')
-async def bot_help(message):
+def strip_help(bot):
+    messages = []
+
     for regex, action in bot.actions.values():
         if action.__doc__:
-            await bot.say(message.channel, action.__doc__.strip())
+            messages.append(action.__doc__.strip())
+    return messages
 
 
-@bot.action('^!(?:add|s)')
-async def add(message):
+async def bot_help(bot, message):
+    await bot.say_lines(message.channel, strip_help(bot))
+
+
+async def add(bot, message):
     """
      - !add, !s - add yourself to the pool
     """
@@ -28,8 +32,7 @@ async def add(message):
         await bot.announce_players(message.channel)
 
 
-@bot.action('^!(?:remove|so)')
-async def remove(message):
+async def remove(bot, message):
     """
      - !remove, !so - remove yourself from the pool
     """
