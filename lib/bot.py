@@ -26,16 +26,15 @@ class Bot:
                     match = re.match(regex, message.content)
                     if match:
                         try:
-                            await fn(message, *match.groups())
+                            await fn(self, message, *match.groups())
                         except Exception as e:
                             logger.exception(e)
                             await self.say(message.channel, 'Something went wrong with that command.')
                         break
 
-    def run(self, username, password):
-        self.username = username
-        self.password = password
-        self.client.run(self.username, self.password)
+    def run(self, token):
+        self.token = token
+        self.client.run(self.token)
 
     def action(self, regex, coro):
         logger.info('Registering action {0}'.format(regex))

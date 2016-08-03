@@ -1,4 +1,8 @@
-aiohttp==0.21.2
+aiohttp==0.21.6
 chardet==2.3.0
-discord.py==0.10.0a0
-websockets==2.7
+discord.py==0.11.0
+flake8==2.5.4
+mccabe==0.4.0
+pep8==1.7.0
+pyflakes==1.0.0
+websockets==3.1

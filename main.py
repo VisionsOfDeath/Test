@@ -18,4 +18,4 @@ if __name__ == '__main__':
     bot.action('^!(?:add|s)', views.add)
     bot.action('^!(?:remove|so)', views.remove)
 
-    bot.run(config['username'], config['password'])
+    bot.run(config['token'])
