@@ -3,7 +3,7 @@ python:
   - "3.5"
 
 install:
-  - "pip install --use-mirrors -e ."
-  - "pip install --use-mirrors -r requirements.txt"
+  - "pip install -e ."
+  - "pip install -r requirements.txt"
 
 script: python -m unittest test/*.py
