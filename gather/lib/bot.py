@@ -36,7 +36,7 @@ class Bot:
         self.token = token
         self.client.run(self.token)
 
-    def action(self, regex, coro):
+    def register_action(self, regex, coro):
         logger.info('Registering action {0}'.format(regex))
         if regex in self.actions:
             logger.info('Overwriting regex {0}'.format(regex))
