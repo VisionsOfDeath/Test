@@ -1,5 +1,5 @@
 import logging
-from lib.bot import Bot
+from gather.lib.bot import Bot
 
 
 logger = logging.getLogger(__name__)
