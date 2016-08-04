@@ -2,6 +2,10 @@
 __pycache__
 *.pyc
 .coverage
+*/.cache
+.cache
+.tox
+Discord_gather.egg-info
 
 # swap
 [._]*.s[a-w][a-z]
