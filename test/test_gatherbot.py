@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 from unittest import mock
-from gather import views
+from gather import commands
 
 
 def async_test(f):
@@ -16,7 +16,7 @@ def async_test(f):
 
 class TestGatherBot(unittest.TestCase):
     def test_help(self):
-        views.strip_help(mock.Mock(actions={
+        commands.strip_help(mock.Mock(actions={
             'friendly': ['testregex', mock.Mock(__doc__='Hello!')]
         }))
 
