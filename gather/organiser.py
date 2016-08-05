@@ -1,38 +1,35 @@
+import random
 from collections import defaultdict
 
 
-class Queue:
-    TEAM_SIZE = 5
-
-    def __init__(self, players=None):
-        if players:
-            self.players = players
-        else:
-            self.players = []
-
-    def add(self, player):
-        new_players = self.players.copy()
-        new_players.append(player)
-
-        return Queue(new_players)
-
-    def remove(self, player):
-        new_players = self.players.copy()
-        new_players.remove(player)
-        return Queue(new_players)
-
-    def __iter__(self):
-        return self.players.__iter__()
+class NotEnoughPlayersError(Exception):
+    pass
 
 
 class Organiser:
-    def __init__(self, default_factory=None):
-        if not default_factory:
-            default_factory = lambda: Queue()  # noqa
-        self.queues = defaultdict(default_factory)
+    TEAM_SIZE = 5
+
+    def __init__(self):
+        self.queues = defaultdict(lambda: set())
 
     def add(self, queue, player):
-        self.queues[queue] = self.queues[queue].add(player)
+        self.queues[queue].add(player)
 
     def remove(self, queue, player):
-        self.queues[queue] = self.queues[queue].remove(player)
+        self.queues[queue].remove(player)
+
+    def ready(self, queue):
+        return len(self.queues[queue]) >= Organiser.TEAM_SIZE * 2
+
+    def pop_teams(self, queue):
+        if len(self.queues[queue]) < Organiser.TEAM_SIZE * 2:
+            raise NotEnoughPlayersError('Not enough players!')
+
+        candidates = list(self.queues[queue])
+        random.shuffle(candidates)
+        players = candidates[:Organiser.TEAM_SIZE * 2]
+        team_one = players[Organiser.TEAM_SIZE:]
+        team_two = players[:Organiser.TEAM_SIZE]
+        for player in players:
+            self.queues[queue].remove(player)
+        return team_one, team_two

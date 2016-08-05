@@ -1,3 +1,6 @@
+from gather.organiser import NotEnoughPlayersError
+
+
 def strip_help(bot):
     messages = []
 
@@ -17,6 +20,12 @@ async def add(bot, channel, author, message):
     """
     bot.organiser.add(channel, author)
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
+
+    try:
+        team_one, team_two = bot.organiser.select_teams()
+        # TODO: Announce the game
+    except NotEnoughPlayersError:
+        pass
 
 
 async def remove(bot, channel, author, message):
