@@ -32,10 +32,10 @@ async def add(bot, channel, author, message):
         await bot.announce_players(channel)
 
 
-async def remove(bot, message):
+async def remove(bot, channel, author, message):
     """
      - !remove, !so - remove yourself from the pool
     """
-    bot.players.discard(message.author)
-    await bot.say(message.channel, 'You are now signed out, {0}.'.format(message.author))
-    await bot.announce_players(message.channel)
+    bot.players.discard(author)
+    await bot.say(channel, 'You are now signed out, {0}.'.format(author))
+    await bot.announce_players(channel)

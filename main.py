@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     bot = GatherBot()
     bot.register_action('^!help', views.bot_help)
-    bot.register_action('^!(?:add|s)#', views.add)
-    bot.register_action('^!(?:remove|so)', views.remove)
+    bot.register_action('^!(?:add|s)', views.add)
+    bot.register_action('^!(?:remove|unsign)', views.remove)
 
     bot.run(config['token'])
