@@ -1,5 +1,5 @@
 import unittest
-from gather.lib.organiser import Organiser
+from gather.organiser import Organiser
 
 
 class TestOrganiser(unittest.TestCase):

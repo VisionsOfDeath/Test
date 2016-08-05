@@ -1,5 +1,5 @@
 import logging
-from gather.lib.bot import DiscordBot
+from gather.bot import DiscordBot
 
 
 logger = logging.getLogger(__name__)
