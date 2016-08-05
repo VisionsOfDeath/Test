@@ -30,7 +30,7 @@ class ListenerBot:
                         await self.say(channel, 'Something went wrong with that command.')
                     break
 
-    def say(self, target, message):
+    def say(self, channel, message):
         pass
 
 
