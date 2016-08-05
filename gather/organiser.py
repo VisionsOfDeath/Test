@@ -10,10 +10,6 @@ class Queue:
         else:
             self.players = []
 
-        self.events = {
-            'on_game_start': None,
-        }
-
     def add(self, player):
         new_players = self.players.copy()
         new_players.append(player)

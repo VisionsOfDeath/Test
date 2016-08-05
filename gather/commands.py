@@ -17,7 +17,6 @@ async def add(bot, channel, author, message):
     """
     bot.organiser.add(channel, author)
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
-    await bot.announce_players(channel)
 
 
 async def remove(bot, channel, author, message):
@@ -26,4 +25,3 @@ async def remove(bot, channel, author, message):
     """
     bot.organiser.remove(channel, author)
     await bot.say(channel, 'You are now signed out, {0}.'.format(author))
-    await bot.announce_players(channel)
