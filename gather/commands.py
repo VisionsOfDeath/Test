@@ -1,6 +1,3 @@
-import random
-
-
 def strip_help(bot):
     messages = []
 
@@ -18,24 +15,15 @@ async def add(bot, channel, author, message):
     """
      - !add, !s - add yourself to the pool
     """
-    bot.players.add(author)
+    bot.organiser.add(channel, author)
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
     await bot.announce_players(channel)
-
-    if len(bot.players) >= bot.TEAM_SIZE * 2:
-        players = random.shuffle(list(bot.players))[:bot.TEAM_SIZE * 2]
-        for p in players:
-            bot.players.discard(p)
-        await bot.say('TEAM ONE: {0}'.format(', '.join([p.name for p in players[:bot.TEAM_SIZE]])))
-        await bot.say('TEAM TWO: {0}'.format(', '.join([p.name for p in players[bot.TEAM_SIZE:]])))
-
-        await bot.announce_players(channel)
 
 
 async def remove(bot, channel, author, message):
     """
      - !remove, !so - remove yourself from the pool
     """
-    bot.players.discard(author)
+    bot.organiser.remove(channel, author)
     await bot.say(channel, 'You are now signed out, {0}.'.format(author))
     await bot.announce_players(channel)
