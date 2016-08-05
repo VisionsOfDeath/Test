@@ -1,11 +1,11 @@
 import logging
-from gather.lib.bot import Bot
+from gather.lib.bot import DiscordBot
 
 
 logger = logging.getLogger(__name__)
 
 
-class GatherBot(Bot):
+class GatherBot(DiscordBot):
     TEAM_SIZE = 5
 
     def __init__(self):

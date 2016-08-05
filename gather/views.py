@@ -14,13 +14,13 @@ async def bot_help(bot, message):
     await bot.say_lines(message.channel, strip_help(bot))
 
 
-async def add(bot, message):
+async def add(bot, channel, author, message):
     """
      - !add, !s - add yourself to the pool
     """
-    bot.players.add(message.author)
-    await bot.say(message.channel, 'You are now signed in, {0}.'.format(message.author))
-    await bot.announce_players(message.channel)
+    bot.players.add(author)
+    await bot.say(channel, 'You are now signed in, {0}.'.format(author))
+    await bot.announce_players(channel)
 
     if len(bot.players) >= bot.TEAM_SIZE * 2:
         players = random.shuffle(list(bot.players))[:bot.TEAM_SIZE * 2]
@@ -29,7 +29,7 @@ async def add(bot, message):
         await bot.say('TEAM ONE: {0}'.format(', '.join([p.name for p in players[:bot.TEAM_SIZE]])))
         await bot.say('TEAM TWO: {0}'.format(', '.join([p.name for p in players[bot.TEAM_SIZE:]])))
 
-        await bot.announce_players(message.channel)
+        await bot.announce_players(channel)
 
 
 async def remove(bot, message):
