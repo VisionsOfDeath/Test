@@ -10,8 +10,8 @@ def strip_help(bot):
     return messages
 
 
-async def bot_help(bot, message):
-    await bot.say_lines(message.channel, strip_help(bot))
+async def bot_help(bot, channel, author, message):
+    await bot.say_lines(channel, strip_help(bot))
 
 
 async def add(bot, channel, author, message):
