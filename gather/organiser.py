@@ -7,7 +7,7 @@ class NotEnoughPlayersError(Exception):
 
 
 class Organiser:
-    TEAM_SIZE = 5
+    TEAM_SIZE = 6
 
     def __init__(self):
         self.queues = defaultdict(lambda: set())
