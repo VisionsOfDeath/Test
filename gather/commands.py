@@ -36,3 +36,5 @@ async def remove(bot, channel, author, message):
     """
     bot.organiser.remove(channel, author)
     await bot.say(channel, 'You are now signed out, {0}.'.format(author))
+    # Add cooldown in so this will not post more than every five seconds or so
+    await bot.announce_players(channel)
