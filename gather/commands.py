@@ -22,7 +22,7 @@ async def add(bot, channel, author, message):
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
 
     try:
-        team_one, team_two = bot.organiser.select_teams()
+        team_one, team_two = bot.organiser.pop_teams(channel)
         # TODO: Announce the game
     except NotEnoughPlayersError:
         pass
