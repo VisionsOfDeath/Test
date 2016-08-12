@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import logging
 import json
 from gather.gatherbot import GatherBot
