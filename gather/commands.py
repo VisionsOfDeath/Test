@@ -25,7 +25,6 @@ async def add(bot, channel, author, message):
 
     try:
         team_one, team_two = bot.organiser.pop_teams(channel)
-        # TODO: Announce the game
         team_one = {str(p) for p in team_one}
         team_two = {str(p) for p in team_two}
         await bot.say(
