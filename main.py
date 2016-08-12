@@ -16,6 +16,6 @@ if __name__ == '__main__':
     bot = GatherBot()
     bot.register_action('^!help', commands.bot_help)
     bot.register_action('^!(?:add|s)', commands.add)
-    bot.register_action('^!(?:remove|unsign)', commands.remove)
+    bot.register_action('^!(?:remove|so)', commands.remove)
 
     bot.run(config['token'])
