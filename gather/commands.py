@@ -20,6 +20,8 @@ async def add(bot, channel, author, message):
     """
     bot.organiser.add(channel, author)
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
+    # Add cooldown in so this will not post more than every five seconds or so
+    await bot.announce_players(channel)
 
     try:
         team_one, team_two = bot.organiser.pop_teams(channel)
