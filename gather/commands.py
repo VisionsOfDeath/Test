@@ -10,8 +10,8 @@ def strip_help(bot):
     return messages
 
 
-async def bot_help(bot, message):
-    await bot.say_lines(message.channel, strip_help(bot))
+async def bot_help(bot, channel, author, message):
+    await bot.say_lines(channel, strip_help(bot))
 
 
 async def add(bot, channel, author, message):
@@ -20,10 +20,16 @@ async def add(bot, channel, author, message):
     """
     bot.organiser.add(channel, author)
     await bot.say(channel, 'You are now signed in, {0}.'.format(author))
+    # Add cooldown in so this will not post more than every five seconds or so
+    await bot.announce_players(channel)
 
     try:
-        team_one, team_two = bot.organiser.select_teams()
-        # TODO: Announce the game
+        team_one, team_two = bot.organiser.pop_teams(channel)
+        team_one = {str(p) for p in team_one}
+        team_two = {str(p) for p in team_two}
+        await bot.say(
+            channel,
+            'Game starting!\nTeam 1: {}\nTeam 2: {}'.format(team_one, team_two))
     except NotEnoughPlayersError:
         pass
 
@@ -34,3 +40,5 @@ async def remove(bot, channel, author, message):
     """
     bot.organiser.remove(channel, author)
     await bot.say(channel, 'You are now signed out, {0}.'.format(author))
+    # Add cooldown in so this will not post more than every five seconds or so
+    await bot.announce_players(channel)
