@@ -17,4 +17,9 @@ setup(
     url='https://github.com/veryhappythings/discord-gather',
     packages=['gather'],
     install_requires=requirements,
+    entry_points={
+        'console_scripts': [
+            'discord-gather = gather.main:main',
+        ]
+    }
 )
