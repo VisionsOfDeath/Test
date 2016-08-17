@@ -15,3 +15,10 @@ To use:
 * pip install -r requirements.txt
 * Put your bot's token into config.json (see config.json.example)
 * Run main.py.
+
+## Contributors
+
+A huge thanks to:
+
+* [@zoidbergwill](https://github.com/zoidbergwill)
+* [@joshramsbottom](https://github.com/joshramsbottom)
