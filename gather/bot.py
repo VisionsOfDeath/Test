@@ -6,6 +6,13 @@ logger = logging.getLogger(__name__)
 
 
 class ListenerBot:
+    """ Abstract bot that understands the idea of listening for a message and
+    calling a function based on the contents of the message.
+
+    Not sure if this is a useful abstraction, but it does allow for easy testing
+    of this code.
+    """
+
     def __init__(self):
         self.actions = {}
         self.username = None
