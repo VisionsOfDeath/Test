@@ -16,9 +16,12 @@ def async_test(f):
 
 class TestGatherBot(unittest.TestCase):
     def test_help(self):
-        commands.strip_help(mock.Mock(actions={
-            'friendly': ['testregex', mock.Mock(__doc__='Hello!')]
-        }))
+        self.assertEqual(
+            ['Hello!'],
+            commands.strip_help(mock.Mock(actions={
+                'friendly': ['testregex', mock.Mock(__doc__='Hello!')]
+            }))
+        )
 
 
 if __name__ == '__main__':
