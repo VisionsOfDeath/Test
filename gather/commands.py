@@ -14,6 +14,16 @@ async def bot_help(bot, channel, author, message):
     await bot.say_lines(channel, strip_help(bot))
 
 
+async def game_status(bot, channel, author, message):
+    """
+     - !game, !status - check current game status
+    """
+    if bot.organiser.queues[channel]:
+        await bot.announce_players(channel)
+    else:
+        await bot.say(channel, 'No players currently signed in. You can start a game by typing "!add".')
+
+
 async def add(bot, channel, author, message):
     """
      - !add, !s - add yourself to the pool

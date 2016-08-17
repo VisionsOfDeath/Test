@@ -15,9 +15,10 @@ def main():
         config = json.load(f)
 
     bot = GatherBot()
-    bot.register_action('^!help', commands.bot_help)
+    bot.register_action('^!help$', commands.bot_help)
     bot.register_action('^!(?:add|s)$', commands.add)
     bot.register_action('^!(?:remove|so)$', commands.remove)
+    bot.register_action('^!(?:game|status)$', commands.game_status)
 
     bot.run(config['token'])
 
