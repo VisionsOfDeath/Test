@@ -42,7 +42,9 @@ class GatherBot(ListenerBot):
     async def announce_players(self, channel):
         await self.say(
             channel,
-            'Currently signed in players: {0}.'.format(
+            'Currently signed in players ({0}/{1}): {2}.'.format(
+                len(self.organiser.queues[channel]),
+                self.organiser.TEAM_SIZE * 2,
                 ', '.join([str(p) for p in self.organiser.queues[channel]])
             )
         )
