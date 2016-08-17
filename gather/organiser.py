@@ -6,6 +6,10 @@ class NotEnoughPlayersError(Exception):
     pass
 
 
+class PlayerNotFound(Exception):
+    pass
+
+
 class Organiser:
     TEAM_SIZE = 5
 
@@ -16,7 +20,10 @@ class Organiser:
         self.queues[queue].add(player)
 
     def remove(self, queue, player):
-        self.queues[queue].remove(player)
+        try:
+            self.queues[queue].remove(player)
+        except KeyError:
+            raise PlayerNotFound()
 
     def ready(self, queue):
         return len(self.queues[queue]) >= Organiser.TEAM_SIZE * 2
