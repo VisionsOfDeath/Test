@@ -9,7 +9,7 @@ requirements = [
 
 
 setup(
-    name='Discord-gather',
+    name='discord-gather',
     version='0.1',
     description='A gather bot for Discord',
     author='Mac Chapman',
