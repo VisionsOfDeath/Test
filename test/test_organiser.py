@@ -23,6 +23,14 @@ class TestOrganiser(unittest.TestCase):
         self.assertEqual(set(), organiser.queues['test'])
         self.assertRaises(PlayerNotFoundError, organiser.remove, 'test', 'testplayer')
 
+    def test_reset(self):
+        organiser = Organiser()
+
+        organiser.queues['test'] = set(['testplayer'])
+        self.assertEqual(set(['testplayer']), organiser.queues['test'])
+        organiser.reset('test')
+        self.assertEqual(set(), organiser.queues['test'])
+
     def test_ready(self):
         organiser = Organiser()
         self.assertFalse(organiser.ready('test'))

@@ -58,3 +58,12 @@ async def remove(bot, channel, author, message):
             channel,
             "Doesn't look like you are signed in. "
             "Try signing in with !add, {}.".format(author))
+
+
+async def reset(bot, channel, author, message):
+    """
+     - !reset - Empty the pool for this channel
+    """
+    if channel.permissions_for(author).administrator:
+        bot.organiser.reset(channel)
+        await bot.say(channel, 'Channel pool reset.')

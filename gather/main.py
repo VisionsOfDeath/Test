@@ -19,6 +19,7 @@ def main():
     bot.register_action('^!(?:add|s)$', commands.add)
     bot.register_action('^!(?:remove|so)$', commands.remove)
     bot.register_action('^!(?:game|status)$', commands.game_status)
+    bot.register_action('^!(?:reset)$', commands.reset)
 
     bot.run(config['token'])
 

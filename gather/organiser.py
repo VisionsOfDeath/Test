@@ -25,6 +25,9 @@ class Organiser:
         except KeyError:
             raise PlayerNotFoundError()
 
+    def reset(self, queue):
+        self.queues[queue] = set()
+
     def ready(self, queue):
         return len(self.queues[queue]) >= Organiser.TEAM_SIZE * 2
 
