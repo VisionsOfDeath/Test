@@ -6,7 +6,7 @@ class NotEnoughPlayersError(Exception):
     pass
 
 
-class PlayerNotFound(Exception):
+class PlayerNotFoundError(Exception):
     pass
 
 
@@ -23,7 +23,7 @@ class Organiser:
         try:
             self.queues[queue].remove(player)
         except KeyError:
-            raise PlayerNotFound()
+            raise PlayerNotFoundError()
 
     def ready(self, queue):
         return len(self.queues[queue]) >= Organiser.TEAM_SIZE * 2

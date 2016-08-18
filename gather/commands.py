@@ -1,4 +1,4 @@
-from gather.organiser import NotEnoughPlayersError, PlayerNotFound
+from gather.organiser import NotEnoughPlayersError, PlayerNotFoundError
 
 
 def strip_help(bot):
@@ -53,7 +53,7 @@ async def remove(bot, channel, author, message):
         await bot.say(channel, 'You are now signed out, {0}.'.format(author))
         # Add cooldown in so this will not post more than every five seconds or so
         await bot.announce_players(channel)
-    except PlayerNotFound:
+    except PlayerNotFoundError:
         await bot.say(
             channel,
             "Doesn't look like you are signed in. "

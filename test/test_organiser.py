@@ -1,5 +1,5 @@
 import unittest
-from gather.organiser import Organiser, NotEnoughPlayersError, PlayerNotFound
+from gather.organiser import Organiser, NotEnoughPlayersError, PlayerNotFoundError
 
 
 class TestOrganiser(unittest.TestCase):
@@ -21,7 +21,7 @@ class TestOrganiser(unittest.TestCase):
     def test_remove_missing_player(self):
         organiser = Organiser()
         self.assertEqual(set(), organiser.queues['test'])
-        self.assertRaises(PlayerNotFound, organiser.remove, 'test', 'testplayer')
+        self.assertRaises(PlayerNotFoundError, organiser.remove, 'test', 'testplayer')
 
     def test_ready(self):
         organiser = Organiser()
