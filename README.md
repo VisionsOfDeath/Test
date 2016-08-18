@@ -12,9 +12,9 @@ To use:
 * Get your bot a discord token by adding a new app at https://discordapp.com/developers/applications/me and creating your app a bot user
 * Add your bot to your guild by constructing a link from this https://discordapp.com/developers/docs/topics/oauth2#adding-bots-to-guilds
 * Install python 3.5
-* pip install -r requirements.txt
+* `pip install .`
 * Put your bot's token into config.json (see config.json.example)
-* Run main.py.
+* Run `discord-gather`
 
 ## Contributors
 
