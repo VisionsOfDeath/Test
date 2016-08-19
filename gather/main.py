@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import logging
 import json
 from gather.gatherbot import GatherBot
@@ -11,8 +12,12 @@ def main():
         format="%(asctime)s,%(msecs)03d %(levelname)-5.5s [%(name)s] %(message)s",
     )
 
-    with open('config.json') as f:
-        config = json.load(f)
+    # FIXME: This is not very tidy and needs re-doing properly
+    if 'DG_TOKEN' in os.environ:
+        config = {'token': os.environ['DG_TOKEN']}
+    else:
+        with open('config.json') as f:
+            config = json.load(f)
 
     bot = GatherBot()
     bot.register_action('^!help$', commands.bot_help)
