@@ -1,8 +1,7 @@
 import logging
 import discord
 from gather.bot import ListenerBot
-from gather.organiser import Organiser, PlayerNotFoundError
-
+from gather.organiser import Organiser
 
 logger = logging.getLogger(__name__)
 
