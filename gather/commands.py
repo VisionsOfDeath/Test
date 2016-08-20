@@ -24,6 +24,9 @@ async def game_status(bot, channel, author, message):
         await bot.say(channel, 'No players currently signed in. You can start a game by typing "!add".')
 
 
+def format_team(players):
+    return str({str(p) for p in players})
+
 async def add(bot, channel, author, message):
     """
      - !add, !s - add yourself to the pool
@@ -39,8 +42,8 @@ async def add(bot, channel, author, message):
 
     try:
         team_one, team_two = bot.organiser.pop_teams(channel)
-        team_one = {str(p) for p in team_one}
-        team_two = {str(p) for p in team_two}
+        team_one = format_team(team_one)
+        team_two = format_team(team_two)
         await bot.say(
             channel,
             'Game starting!\nTeam 1: {}\nTeam 2: {}'.format(team_one, team_two))

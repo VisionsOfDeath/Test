@@ -12,6 +12,12 @@ class TestCommands(unittest.TestCase):
             }))
         )
 
+    def test_format_team(self):
+        self.assertEqual(
+            "{'TestPlayer', 'TestPlayer2'}",
+            commands.format_team(['TestPlayer', 'TestPlayer2'])
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
