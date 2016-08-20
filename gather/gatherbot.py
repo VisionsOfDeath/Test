@@ -28,6 +28,20 @@ class GatherBot(ListenerBot):
             # FIXME: These are still objects, and perhaps they need to be?
             await self.on_message(message.channel, message.author, message.content)
 
+        @self.client.event
+        async def on_member_update(before, after):
+            if before.status == discord.Status.online and after.status == discord.Status.offline:
+                for channel in self.organiser.queues:
+                    if channel.server != before.server:
+                        continue
+
+                    if before in self.organiser.queues[channel]:
+                        self.organiser.remove(channel, before)
+                        await self.say(channel,
+                            '{} was signed in but went offline.'.format(before))
+                        await self.announce_players(channel)
+                        break
+
     def run(self, token):
         self.token = token
         self.client.run(self.token)
