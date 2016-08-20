@@ -25,7 +25,8 @@ async def game_status(bot, channel, author, message):
 
 
 def format_team(players):
-    return str({str(p) for p in players})
+    return ', '.join(str(p) for p in players)
+
 
 async def add(bot, channel, author, message):
     """

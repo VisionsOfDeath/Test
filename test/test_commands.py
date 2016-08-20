@@ -14,8 +14,8 @@ class TestCommands(unittest.TestCase):
 
     def test_format_team(self):
         self.assertEqual(
-            "{'TestPlayer', 'TestPlayer2'}",
-            commands.format_team(['TestPlayer', 'TestPlayer2'])
+            "TestPlayer, TestPlayer2, TestPlayer3",
+            commands.format_team(['TestPlayer', 'TestPlayer2', 'TestPlayer3'])
         )
 
 
