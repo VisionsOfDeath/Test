@@ -29,9 +29,13 @@ async def add(bot, channel, author, message):
      - !add, !s - add yourself to the pool
     """
     bot.organiser.add(channel, author)
-    await bot.say(channel, 'You are now signed in, {0}.'.format(author))
-    # Add cooldown in so this will not post more than every five seconds or so
-    await bot.announce_players(channel)
+    await bot.say(
+        channel,
+        'You are now signed in, {0}. {1}'.format(
+            author,
+            bot.player_count_display(channel)
+        )
+    )
 
     try:
         team_one, team_two = bot.organiser.pop_teams(channel)
@@ -50,9 +54,13 @@ async def remove(bot, channel, author, message):
     """
     try:
         bot.organiser.remove(channel, author)
-        await bot.say(channel, 'You are now signed out, {0}.'.format(author))
-        # Add cooldown in so this will not post more than every five seconds or so
-        await bot.announce_players(channel)
+        await bot.say(
+            channel,
+            'You are now signed out, {0}. {1}'.format(
+                author,
+                bot.player_count_display(channel)
+            )
+        )
     except PlayerNotFoundError:
         await bot.say(
             channel,

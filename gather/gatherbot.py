@@ -37,8 +37,13 @@ class GatherBot(ListenerBot):
 
                     if before in self.organiser.queues[channel]:
                         self.organiser.remove(channel, before)
-                        await self.say(channel,
-                            '{} was signed in but went offline.'.format(before))
+                        await self.say(
+                            channel,
+                            '{0} was signed in but went offline. {1}'.format(
+                                before,
+                                self.player_count_display(channel)
+                            )
+                        )
                         await self.announce_players(channel)
 
     def run(self, token):
