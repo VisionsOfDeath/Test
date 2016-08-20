@@ -40,7 +40,6 @@ class GatherBot(ListenerBot):
                         await self.say(channel,
                             '{} was signed in but went offline.'.format(before))
                         await self.announce_players(channel)
-                        break
 
     def run(self, token):
         self.token = token
@@ -56,9 +55,14 @@ class GatherBot(ListenerBot):
     async def announce_players(self, channel):
         await self.say(
             channel,
-            'Currently signed in players ({0}/{1}): {2}.'.format(
-                len(self.organiser.queues[channel]),
-                self.organiser.TEAM_SIZE * 2,
+            'Currently signed in players {0}: {1}'.format(
+                self.player_count_display(channel),
                 ', '.join([str(p) for p in self.organiser.queues[channel]])
             )
+        )
+
+    def player_count_display(self, channel):
+        return '({0}/{1})'.format(
+            len(self.organiser.queues[channel]),
+            self.organiser.TEAM_SIZE * 2,
         )
